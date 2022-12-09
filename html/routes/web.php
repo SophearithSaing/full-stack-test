@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 
 Route::get('/', function (Request $request) {
     return view('properties', [
-        'offset' => $request->offset
+        'offset' => $request->offset,
+        'search' => $request->search,
     ]);
 });
 

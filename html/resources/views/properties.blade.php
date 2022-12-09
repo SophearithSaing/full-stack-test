@@ -6,12 +6,27 @@
   $data = file_get_contents('data/properties.json');
   $properties = json_decode($data, true);
 
+  if ($search) {
+    $properties = array_filter($properties, function ($item) use ($search) {
+      return (str_contains(strtolower($item['title']), strtolower($search)) || 
+        str_contains(strtolower($item['geo']['country']), strtolower($search)) ||
+        str_contains(strtolower($item['geo']['province']), strtolower($search)) ||
+        str_contains(strtolower($item['geo']['street']), strtolower($search)));
+    });
+    $properties = array_values($properties);
+  }
+
   $number_of_pages = ceil(sizeof($properties) / 12);
   if (!$offset) {
     $offset = 0;
   }
   $current_page = ($offset / 12) + 1;
 @endphp
+
+<form action="/" method="get" class="container search">
+  <input type="text" id="search" name="search" placeholder="Search title or location...">
+  <button type="submit">Search</button>
+</form>
 
 <div class="container properties">
   @foreach($properties as $key => $property)
@@ -39,7 +54,15 @@
 
 <div class="container pagination">
   @for ($i = 0; $i < $number_of_pages; $i++)
-    <a href="/?offset={{$i * 12}}" class="page {{ ($i+1 == $current_page) ? 'active' : '' }}">{{ $i + 1 }}</a>
+    @php
+      $offset = $i * 12;
+      if ($search) {
+        $link = "/?search={$search}&offset={$offset}";
+      } else {
+        $link = "/?offset={$offset}";
+      }
+    @endphp
+    <a href="{{ $link }}" class="page {{ ($i+1 == $current_page) ? 'active' : '' }}">{{ $i + 1 }}</a>
   @endfor
 </div>
 

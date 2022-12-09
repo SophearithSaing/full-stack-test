@@ -13,6 +13,20 @@ h1 {
   padding: 0 30px 50px;
 }
 
+.search input,
+.search button {
+  all: unset;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.search button:hover {
+  cursor: pointer;
+  background: black;
+  color: white;
+}
+
 .properties {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
