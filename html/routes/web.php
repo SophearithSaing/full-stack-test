@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('properties');
 });
+
+Route::get('/{city}', function ($city) {
+    return view('filtered-properties', [
+        'city' => $city,
+    ]);
+});
