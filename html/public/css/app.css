@@ -59,3 +59,27 @@ h1 {
 .properties .property .details p:nth-child(even) {
   text-align: right;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.pagination .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.pagination .page:hover,
+.pagination .page.active {
+  color: white;
+  background: black;
+}

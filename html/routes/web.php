@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('properties');
+Route::get('/', function (Request $request) {
+    return view('properties', [
+        'offset' => $request->offset
+    ]);
 });
 
-Route::get('/{city}', function ($city) {
+Route::get('/{city}', function (Request $request, $city) {
     return view('filtered-properties', [
+        'offset' => $request->offset,
         'city' => $city,
     ]);
 });
