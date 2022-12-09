@@ -13,7 +13,7 @@ I spent about 3-4 hours on the test. If I had more time I would add:
 Nothing remarkable in 2022 but `replaceAll` was introduced to JavaScript in 2021 and it's very convenient for string manipulation.
 ```js
 const str = 'JavaScript is my language of choice. I use JavaScript all the time.';
-const newStr = p.replaceAll('JavaScript', 'TypeScript');
+const newStr = str.replaceAll('JavaScript', 'TypeScript');
 
 console.log(newStr);
 //output: TypeScript is my language of choice. I use TypeScript all the time.
